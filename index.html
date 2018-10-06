@@ -1,0 +1,103 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>@littlechinright的匿名留言</title>
+  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  </head>
+
+<body>
+	<script>
+		var firebase;
+$(function(){
+  var $content = $('#content'),
+      $btn = $('#btn'),
+      $show = $('#show'),
+      ms = new Date().getTime();
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB9QzbVpeQlmbGBeW5iMwtbAvri19kTgXU",
+    authDomain: "igsecret-89927.firebaseapp.com",
+    databaseURL: "https://igsecret-89927.firebaseio.com",
+    projectId: "igsecret-89927",
+    storageBucket: "igsecret-89927.appspot.com",
+    messagingSenderId: "329630175177"
+  };
+  firebase.initializeApp(config);
+  var database = firebase.database().ref();
+  
+  $btn.on('click',write);
+  $content.on('keydown', function(e){
+    if(e.keyCode == 13){
+      write();
+    }
+  });
+  
+  function write(){
+    var date = new Date();
+    var h = date.getHours();
+    var m = date.getMinutes();
+    var s = date.getSeconds();
+    if(h<10){
+      h = '0'+h;
+    }
+    if(m<10){
+      m = '0' + m;
+    }
+    if(s<10){
+      s = '0' + s;
+    }
+    var now = h+':'+m+':'+s;
+    var postData = {
+      content:$('#content').val(),
+      time:now,
+      id:'id'+ms
+    };
+    database.push(postData);
+    $content.val('');
+	  location.href="https://beta.littlechin.wartw.top/igsecret/complete";
+  }
+  
+  
+});
+	</script>
+							
+	<body class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main">
+						<header>
+							<h1>把要告訴<b>@littlechinright</b>的話匿名傳給他吧！</h1>
+							<h3><strong>=>僅支援單行輸入<=</strong></h3>
+							<h2>內容：<input id="content"></h2>
+ 							<button id="btn">送出</button>
+							</form>
+						</header>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="copyright">
+							<li>&copy; Jane Doe</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+			<script>
+				if ('addEventListener' in window) {
+					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+				}
+			</script>
+</body>
+</html>
