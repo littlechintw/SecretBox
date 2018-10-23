@@ -42,6 +42,9 @@ $(function(){
     var h = date.getHours();
     var m = date.getMinutes();
     var s = date.getSeconds();
+    var y = date.getFullYear();
+    var mm = date.getMonth()+1;
+    var d = date.getDate();
     if(h<10){
       h = '0'+h;
     }
@@ -51,7 +54,7 @@ $(function(){
     if(s<10){
       s = '0' + s;
     }
-    var now = h+':'+m+':'+s;
+    var now = y+'/'+mm+'/'+d+' '+h+':'+m+':'+s;
     var postData = {
       content:$('#content').val(),
       time:now,
