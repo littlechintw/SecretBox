@@ -42,13 +42,12 @@ $(function(){
   database.once('value', function(snapshot) {
     $show.html('');
     for(var i in snapshot.val()){
-       $show.prepend('<div><div>'+snapshot.val()[i].time+'</div>'+snapshot.val()[i].content+'</div></div>');
+       $show.prepend('<div><div>'+snapshot.val()[i].time+'</div>'+htmlEncoder(snapshot.val()[i].content)+'</div></div>');
     }
   });
-
   database.limitToLast(1).on('value', function(snapshot) {
     for(var i in snapshot.val()){
-       $show.prepend('<div class="'+snapshot.val()[i].id+'"><div>'+snapshot.val()[i].time+'</div>'+snapshot.val()[i].content+'</div></div>');
+       $show.prepend('<div class="'+snapshot.val()[i].id+'"><div>'+snapshot.val()[i].time+'</div>'+htmlEncoder(snapshot.val()[i].content)+'</div></div>');
     }
     $show.find('.id'+ms).css({
       color:'#f00'
@@ -57,9 +56,17 @@ $(function(){
       color:'#f00'
     });
   });
-
-
+  
+  
 });
+			function htmlEncoder(html) {
+        var sub = document.createElement('div');
+        sub.textContent != null ? sub.textContent = html : sub.innerText = html;
+        var output = sub.innerHTML;
+        sub = null;
+        return output;
+    }
+			
 		</script>
 		<!-- Header -->
 			<header id="header">
