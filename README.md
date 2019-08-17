@@ -1,7 +1,10 @@
 # SecretBox
+```
+此專案是利用Firebase作為DB，且可供人匿名留言
+```
 
 ## Demo Page
-[litttlechin.github.io/SecretBoxDemo/](https://litttlechin.github.io/SecretBoxDemo/)
+[littlechintw.github.io/SecretBoxDemo/](https://littlechintw.github.io/SecretBoxDemo/)
 
 ## Update!!
 ```
